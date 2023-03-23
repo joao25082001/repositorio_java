@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100vw;
+                text-align: center;
+                height: 100vh;
+                background: rgb(2, 0, 36);
+                background: linear-gradient(3deg, rgba(2, 0, 36, 0.7651435574229692) 10%, rgba(29, 204, 237, 1) 63%, rgba(0, 212, 255, 1) 99%);
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            .botao{
+                width: 35%;
+                height: 60px;
+                margin-top: 20px;
+
+            }
+            .painel{
+                width:30%;
+                height:350px;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                margin-top: 100px
+
+            }
+            h1{
+                font-size: 2rem;
+                width: 100%;
+                text-align: center;
+            }
+            .form{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: space-around;
+                flex-direction: column;
+            }
+            .botoes{
+                margin-top: 20px
+            };
+            .botoes botao1{
+                width: 50px;
+            }
+               header {
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 90%;
+                height: 10%;
+
+
+            }
+            .links {
+                display: flex;
+                width: 50%;
+                justify-content: space-around;
+            }
+             a {
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 20px;
+                color: black;
+            }
+        </style>
+    </h:head>
+
+    <body >
+
+        <header>
+            <div class="logo">
+
+                <h1>Stefanini Controll</h1>
+            </div>
+            <div class="links">
+                <a href=""> <h:link outcome="/index.xhtml" value="contato"/></a>
+                <a href=""> <h:link outcome="/index.xhtml" value="Serviços"/></a>
+                <a href="" actionListener="#{funcionarioController.prepareCreateCadastrar()}"> <h:link outcome="/faces/funcionario/Cadastrar.xhtml" value="cadastre-se"/> </a>
+
+            </div>
+        </header>
+
+        <div class="painel">
+
+            <div class="titulo">
+                <h1>
+                    Login
+                </h1>
+            </div>
+
+            <h:form id="a" >
+                <div class="form" selection="#{funcionarioController.selected2}">
+
+                    <h:outputLabel for="cpf" value="cpf"/>
+                    <p:inputText id="cpf" value="#{funcionarioController.selected2.cpf}" title="Cpf" required="true" requiredMessage="Cpf Obrigatório"/>
+
+                </div>
+                <div class="botoes">
+                    <p:commandButton class="botao1" actionListener="#{funcionarioController.entrar}"  onclick="mensagem()" value="Entrar"/>
+                </div>
+            </h:form>
+
+        </div>
+        <div class="card">            <h:form>                <p:growl id="messages" />            </h:form>        </div>
+    </body>
+
+
+</html>

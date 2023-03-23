@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgb(2, 0, 36);
+                background: linear-gradient(3deg, rgba(2, 0, 36, 0.7651435574229692) 10%, rgba(29, 204, 237, 1) 63%, rgba(0, 212, 255, 1) 99%);
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            a {
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 20px;
+                color: black;
+            }
+
+            header {
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 90%;
+                height: 10%;
+
+
+            }
+            .links {
+                display: flex;
+                width: 50%;
+                justify-content: space-around;
+            }
+            .botao{
+                width: 35%;
+                height: 60px;
+                margin-top: 20px;
+
+            }
+            .painel{
+                width:30%;
+                height:520px;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                border: solid 3px aqua;
+
+            }
+            h1{
+                font-size: 2rem;
+                width: 100%;
+                text-align: center;
+            }
+            .form{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: space-around;
+                flex-direction: column;
+            }
+            .botoes{
+                display: flex;
+            };
+            .botoes botao1{
+                width: 50px;
+            }
+        </style>
+    </h:head>
+
+    <body >
+        <header>
+            <div class="logo">
+
+                <h1>Stefanini Controll</h1>
+            </div>
+            <div class="links">
+                 <a href=""> <h:link outcome="/index.xhtml" value="contato"/></a>
+                <a href=""> <h:link outcome="/index.xhtml" value="Serviços"/></a>
+                <a href="" actionListener=""><h:link  outcome="/faces/funcionario/Listar1.xhtml" value="ver cadastros"/></a>
+            </div>
+        </header>
+
+        <div class="painel">
+
+            <h1 class="teste"> cadastre seu funcionario </h1>
+
+            <h:form id="formulario" >
+                <div class="form">
+                    <h:outputLabel for="nome" value="nome"/>
+                    <p:inputText id="nome" value="#{funcionarioController.selected2.nome}" title="Nome" required="true" requiredMessage="Nome Obrigatório"/>
+                    <h:outputLabel for="email" value="email"/>
+                    <p:inputText id="email" value="#{funcionarioController.selected2.email}" title="Email" required="true" requiredMessage="Email Obrigatório"/>
+                    <h:outputLabel for="cpf" value="cpf"/>
+                    <p:inputText id="cpf" value="#{funcionarioController.selected2.cpf}" title="Cpf" required="true" requiredMessage="Cpf Obrigatório"/>
+                    <h:outputLabel for="area"  value="area"/>
+                    <p:inputText id="area" value="#{funcionarioController.selected2.area}" title="celula" required="true" requiredMessage="Área Obrigatória"/>
+                    <h:outputLabel for="setor" value="setor"/>
+                    <p:inputText id="setor" value="#{funcionarioController.selected2.setor}" title="Setor" required="true" requiredMessage="Setor Obrigatório"/>
+                    <h:outputText  value="tipo do funcionario"/>
+                    <p:selectOneMenu id="fkusuario" value="#{funcionarioController.selected2.fkusuario}"  required="true" requiredMessage="Área Obrigatória" style="width:100%">
+                        <f:selectItem itemLabel="tipo do usuario" itemValue="" />
+                        <f:selectItem itemLabel="RH" itemValue="RH" />
+                        <f:selectItem itemLabel="estoque" itemValue="estoque" />
+                        <f:selectItem itemLabel="outro" itemValue="outro" />
+                        <f:facet name="footer">
+                            <p:separator />
+                            <h:outputText value="3 consoles" style="font-weight:bold;"/>
+                        </f:facet>
+                    </p:selectOneMenu>
+                </div>
+                <div class="botoes">
+
+                    <p:commandButton class="botao1" actionListener="#{funcionarioController.create}" action="/faces/funcionario/Cadastrar_1.xhtml" onclick="mensagem()" value="Salvar"/>
+
+                </div>
+            </h:form>
+
+
+        </div>
+        <div class="card">            <h:form>                <p:growl id="messages" />            </h:form>        </div>
+    </body>
+
+</html>

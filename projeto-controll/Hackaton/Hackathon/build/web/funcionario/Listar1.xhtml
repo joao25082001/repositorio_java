@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText  value="Funcionários"></h:outputText>
+        </ui:define>
+
+        <ui:define  id="body" name="body">
+            <h:form id="FuncionarioListForm">
+                <p:panel header="Lista de Funcionários" style="background: rgb(2, 0, 36);
+        background: linear-gradient(3deg, rgba(2, 0, 36, 0.7651435574229692) 10%, rgba(29, 204, 237, 1) 63%, rgba(0, 212, 255, 1) 99%);">
+                    <p:dataTable id="datalist" value="#{funcionarioController.items}"  style="background-color:black" var="item"
+                                 selectionMode="single" selection="#{funcionarioController.selected2}"
+                                 paginator="false"
+                                 rowKey="#{item.id}"
+                                
+                               
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton editButton deleteButton"/>     
+                           
+                        <p:column style="background-color:lightgrey">
+                            <f:facet name="header">
+                                <h:outputText style="color: black" value="Nome"/>
+                            </f:facet>
+                            <h:outputText  value="#{item.nome}"/>
+                        </p:column>
+                        <p:column style="background-color:lightgrey">
+                            <f:facet name="header">
+                                <h:outputText style="color: black" value="Email"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </p:column>
+                        <p:column style="background-color:lightgrey">
+                            <f:facet name="header">
+                                <h:outputText style="color: black" value="Cpf"/>
+                            </f:facet>
+                            <h:outputText  value="#{item.cpf}"/>
+                        </p:column>
+                        <p:column style="background-color:lightgrey">
+                            <f:facet name="header">
+                                <h:outputText style="color: black" value="Área"/>
+                            </f:facet>
+                            <h:outputText  value="#{item.area}"/>
+                        </p:column>
+                        <p:column style="background-color:lightgrey">
+                            <f:facet name="header">
+                                <h:outputText style="color: black" value="Setor"/>
+                            </f:facet>
+                            <h:outputText value="#{item.setor}"/>
+                        </p:column>
+                        <p:column style="background-color:lightgrey">
+                            <f:facet name="header">
+                                <h:outputText style="color: black" value="tipo do usuario"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkusuario}"/>
+                        </p:column>
+                        <f:facet  name="footer">
+                            <p:commandButton id="createButton" class="botao" icon="pi-pencil"   value="Incluir" actionListener="#{funcionarioController.prepareCreateCadastrar}"  action="/faces/funcionario/Cadastrar_1.xhtml"/>
+                            <p:commandButton id="editButton"  class="botao" icon="ui-icon-pencil" value="Alterar" update=":FuncionarioEditForm" oncomplete="PF('FuncionarioEditDialog').show()" disabled="#{empty funcionarioController.selected2}"/>
+                            <p:commandButton id="deleteButton"  class="botao" icon="ui-icon-trash"  value="Excluir" actionListener="#{funcionarioController.destroy}" update=":growl,datalist" disabled="#{empty funcionarioController.selected2}"/>
+                        </f:facet>
+                        
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Incluir1.xhtml"/> 
+            <ui:include src="Editar1.xhtml"/>
+        </ui:define>
+    </ui:composition>
+    </body>
+
+</html>

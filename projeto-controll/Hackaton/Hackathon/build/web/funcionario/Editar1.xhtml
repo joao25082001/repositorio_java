@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FuncionarioEditDlg" widgetVar="FuncionarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Alterar Funcionários">
+            <h:form id="FuncionarioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{funcionarioController.selected2 != null}">
+                        
+                        <p:outputLabel value="Nome" for="nome" />
+                        <p:inputText id="nome" value="#{funcionarioController.selected2.nome}" title="Nome" required="true" requiredMessage="Nome Obrigatório"/>
+                        
+                        <p:outputLabel value="Email" for="email" />
+                        <p:inputText id="email" value="#{funcionarioController.selected2.email}" title="Email" required="true" requiredMessage="Email Obrigatório"/>
+                        
+                        <p:outputLabel value="Cpf" for="cpf" />
+                        <p:inputText id="cpf" value="#{funcionarioController.selected2.cpf}" title="Cpf" required="true" requiredMessage="Cpf Obrigatório"/>
+                        
+                        <p:outputLabel value="Área" for="area" />
+                        <p:inputText id="area" value="#{funcionarioController.selected2.area}" title="Área" required="true" requiredMessage="Área Obrigatória"/>
+                        
+                        <p:outputLabel value="Setor" for="setor" />
+                        <p:inputText id="setor" value="#{funcionarioController.selected2.setor}" title="Setor" required="true" requiredMessage="Setor Obrigatório"/>
+                        <p:outputLabel value="fkusuario" for="fkusuario" />
+                        <p:inputText id="fkusuario" value="#{funcionarioController.selected2.fkusuario}" title="Setor" required="true" requiredMessage="Setor Obrigatório"/>
+                    </p:panelGrid>
+                    <p:commandButton class="botao" actionListener="#{funcionarioController.update}" value="Salvar" update="display,:FuncionarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FuncionarioEditDialog');"/>
+                    <p:commandButton class="botao" value="Cancelar" onclick="FuncionarioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
+
